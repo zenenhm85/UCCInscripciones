@@ -10,7 +10,7 @@ class Inscricao {
         $objeto = new Conexao();
         $conexao = $objeto->Conectar();
          
-        $query = "SELECT * FROM inscricao WHERE userid ='$userid' ORDER BY data DESC LIMIT 25";                            
+        $query = "SELECT inscricao.*,aluno.nomecompleto FROM inscricao INNER JOIN aluno ON(inscricao.bi=aluno.bi) WHERE inscricao.userid ='$userid' ORDER BY data DESC LIMIT 25";                            
         try{
             $listaAlunos = mysqli_query($conexao, $query); 
             mysqli_close($conexao);
@@ -23,8 +23,9 @@ class Inscricao {
     public static function todos2($userid) {
         $objeto = new Conexao();
         $conexao = $objeto->Conectar();
-         
-        $query = "SELECT * FROM inscricao WHERE userid2 ='$userid' AND convocatoria='2' ORDER BY data DESC LIMIT 25";                            
+
+        $query = "SELECT inscricao.*,aluno.nomecompleto FROM inscricao INNER JOIN aluno ON(inscricao.bi=aluno.bi) WHERE inscricao.userid2 ='$userid' AND convocatoria='2' ORDER BY data DESC LIMIT 25";
+
         try{
             $listaAlunos = mysqli_query($conexao, $query); 
             mysqli_close($conexao);
@@ -76,7 +77,7 @@ class Inscricao {
     public static function listarPorBI($bi) {
             $objeto = new Conexao();
             $conexao = $objeto->Conectar(); 
-            $query = "SELECT * FROM inscricao WHERE bi LIKE '$bi%' LIMIT 5";                            
+            $query = "SELECT inscricao.*,aluno.nomecompleto FROM inscricao INNER JOIN aluno ON(inscricao.bi=aluno.bi) WHERE inscricao.bi LIKE '$bi%' LIMIT 10";                            
             try{
                 $listaAlunos = mysqli_query($conexao, $query); 
                 mysqli_close($conexao);
@@ -89,7 +90,9 @@ class Inscricao {
     public static function listarPorBI2($bi) {
             $objeto = new Conexao();
             $conexao = $objeto->Conectar(); 
-            $query = "SELECT * FROM inscricao WHERE bi LIKE '$bi%' AND convocatoria='2' LIMIT 5";                            
+
+             $query = "SELECT inscricao.*,aluno.nomecompleto FROM inscricao INNER JOIN aluno ON(inscricao.bi=aluno.bi) WHERE inscricao.bi LIKE '$bi%' AND convocatoria='2' LIMIT 10"; 
+                                      
             try{
                 $listaAlunos = mysqli_query($conexao, $query); 
                 mysqli_close($conexao);

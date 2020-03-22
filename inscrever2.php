@@ -43,17 +43,18 @@
                   <table class="table table-bordered table-hover">
                       <thead class="bg-gradient-primary">
                           <tr>
-                              <th scope="col" class="text-center text-gray-100">Bilhete de identidade</th>        
-                              <th scope="col" class="text-center text-gray-100">Excluir</th>
-                              <th scope="col" class="text-center text-gray-100">Informação</th>                                
+                            <th scope="col" class="text-center text-gray-100" style="width: 20%;">Bilhete de identidade</th>   
+                            <th scope="col" class="text-center text-gray-100" style="width: 50%;">Nome Completo</th>        
+                            <th scope="col" class="text-center text-gray-100" style="width: 15%;">Excluir</th>
+                            <th scope="col" class="text-center text-gray-100" style="width: 15%;">Informação</th>                
                           </tr>
                       </thead>
                       <tbody>                                
                           <tr v-for="item in inscricoes">
-                              <td class="text-center">{{item.bi}}</td>                                           
-                              <td class="text-center"><button class="btn btn-danger btn-circle" title="Excluir" data-toggle="modal" data-target="#excluirinscricaoModal2" @click="Eliminar(item.bi,item.ano)"><i class="fa fa-trash-alt fa-1x"></i></button></td>
-                              <td class="text-center"><button class="btn btn-info btn-circle" title="Informação completa" data-toggle="modal" data-target="#infoinscricaoModal" @click="info(item.bi,item.ano,item.userid2)"><i class="fa fa-info-circle fa-1x"></i></button></td>
-
+                            <td class="text-center">{{item.bi}}</td>
+                            <td class="text-center">{{item.nomecompleto}}</td>                                           
+                            <td class="text-center"><button class="btn btn-danger btn-circle" title="Excluir" data-toggle="modal" data-target="#excluirinscricaoModal2" @click="Eliminar(item.bi,item.ano)"><i class="fa fa-trash-alt fa-1x"></i></button></td>
+                            <td class="text-center"><button class="btn btn-info btn-circle" title="Informação completa" data-toggle="modal" data-target="#infoinscricaoModal" @click="info(item.bi,item.ano,item.userid2)"><i class="fa fa-info-circle fa-1x"></i></button></td>
                           </tr>                          
                       </tbody>
                   </table>
