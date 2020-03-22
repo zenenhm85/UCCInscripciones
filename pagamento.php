@@ -47,14 +47,16 @@
                   <table class="table table-bordered table-hover">
                       <thead class="bg-gradient-primary">
                           <tr>
-                              <th scope="col" class="text-center text-gray-100">Bilhete de identidade</th>         
-                              <th scope="col" class="text-center text-gray-100">Excluir</th>
-                              <th scope="col" class="text-center text-gray-100">Informação</th>                   
+                              <th scope="col" class="text-center text-gray-100" style="width: 20%;">Bilhete de identidade</th>  
+                              <th scope="col" class="text-center text-gray-100" style="width: 50%;">Nome Completo</th>       
+                              <th scope="col" class="text-center text-gray-100" style="width: 15%;">Excluir</th>
+                              <th scope="col" class="text-center text-gray-100" style="width: 15%;">Informação</th>                   
                           </tr>
                       </thead>
                       <tbody>                                
                           <tr v-for="item in inscricoescompagamento">
-                            <td class="text-center">{{item.bi}}</td>                                                       
+                            <td class="text-center">{{item.bi}}</td>
+                            <td class="text-center">{{item.nomecompleto}}</td>                                                       
                             <td class="text-center"><button class="btn btn-danger btn-circle" title="Excluir" data-toggle="modal" data-target="#excluirPagamentoModal" @click="Eliminar(item.bi,item.ano)"><i class="fa fa-trash-alt fa-1x"></i></button></td>
                             <td class="text-center"><button class="btn btn-info btn-circle" title="Informação completa" data-toggle="modal" data-target="#infoPagamentoModal" @click="info(item.bi,item.ano,item.valores,item.banco,item.codreferencia,item.useridpaga,item.data)"><i class="fa fa-info-circle fa-1x"></i></button></td>
                           </tr>                          
@@ -167,7 +169,17 @@
                                 <tbody>
                                     <tr>
                                       <td colspan="2" class="text-uppercase" >
-                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECIBO PAGAMENTO DE INSCRIÇÃO UCC <?php echo date("Y");?> </b>
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/ucclogo.png"></span>
+                                      </td>                                      
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2" class="text-uppercase" >
+                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIVERSIDADE CUITO CUANAVALE</b>
+                                      </td>                                        
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2">
+                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recibo Pagamento de Inscrição Para Exame de Acesso <?php echo date("Y");?> </b>
                                       </td>                                      
                                     </tr>
                                     <tr>
@@ -193,20 +205,24 @@
 
                                     <!-- Outro Recibo --> 
                                     <tr>
-                                      <td colspan="2" class="text-center text-uppercase">
-                                        <b>------------------------------------------------------------------------------------------------------------</b>
+                                      <td colspan="2" class="text-center">
+                                        <b style="font-size: 18px;">---------------------------------------------------------------------------------------------------</b>
                                       </td>                                      
-                                    </tr> 
-                                    <tr>
-                                      <td colspan="2" class="text-center text-uppercase">
-                                        <b>------------------------------------------------------------------------------------------------------------</b>
-                                      </td>                                      
-                                    </tr> 
                                      <tr>
-                                      <td colspan="2" class="text-uppercase">
-                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECIBO PAGAMENTO DE INSCRIÇÃO UCC <?php echo date("Y");?> </b>
+                                      <td colspan="2" class="text-uppercase" >
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/ucclogo.png"></span>
                                       </td>                                      
-                                    </tr>                                    
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2" class="text-uppercase" >
+                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UNIVERSIDADE CUITO CUANAVALE</b>
+                                      </td>                                        
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2">
+                                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recibo Pagamento de Inscrição Para Exame de Acesso <?php echo date("Y");?> </b>
+                                      </td>                                    
+                                    </tr>                      
                                     <tr>
                                       <td style="width: 50%"><b>Bilhete de identidade: </b>{{bii}}</td>
                                       <td style="width: 50%"><b>Ano: </b>{{anoi}}</td>

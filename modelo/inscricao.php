@@ -38,7 +38,7 @@ class Inscricao {
     public static function compagamento($useridpaga) {
         $objeto = new Conexao();
         $conexao = $objeto->Conectar(); 
-        $query = "SELECT * FROM inscricao WHERE valores!='-1' AND useridpaga = '$useridpaga' ORDER BY data DESC LIMIT 25";                            
+        $query = "SELECT inscricao.*,aluno.nomecompleto FROM inscricao INNER JOIN aluno ON(inscricao.bi=aluno.bi) WHERE valores!='-1' AND useridpaga = '$useridpaga' ORDER BY data DESC LIMIT 25";                            
         try{
             $listaAlunos = mysqli_query($conexao, $query); 
             mysqli_close($conexao);
