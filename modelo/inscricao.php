@@ -321,6 +321,20 @@ class Inscricao {
             return 'Engano: ' . $error;
         }                   
     }
+    /*public static function MaisDeUmCurso($ano){
+         $objeto = new Conexao();
+        $conexao = $objeto->Conectar();
+         
+        $query = "SELECT bi, COUNT(bi) as quant FROM inscricaocurso WHERE ano='$ano' GROUP BY bi ORDER BY quant DESC" ;                            
+        try{
+            $listaAlunos = mysqli_query($conexao, $query); 
+            mysqli_close($conexao);
+            return $listaAlunos;
+        }
+        catch (Exception $e){
+            return "O error de Conexão é: ". $e->getMessage();
+        }       
+    }*/
 
 }
 ?>
