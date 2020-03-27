@@ -69,7 +69,12 @@ elseif($opcao == 5){
          
   while ($f = mysqli_fetch_array($resultado)) 
   {
-      $arrayAux= array('no' =>$i + 1,'bi'=>$f['bi'],'nomecompleto'=>$f['nomecompleto'],'nota1'=>$f['nota1'],'admitido'=>$f['admitido']);
+      $apto = "Apto";
+      if($f['nota1']< 10){
+        $apto = "Não Apto";
+      }
+      $arrayAux= array('no' =>$i + 1,'bi'=>$f['bi'],'nomecompleto'=>$f['nomecompleto'],'nota1'=>$f['nota1'],'admitido'=>$f['admitido'],'apto'=>$apto );
+
       $array[$i] = $arrayAux;
       $i++;            
   }
@@ -212,7 +217,11 @@ elseif($opcao == -6){
          
   while ($f = mysqli_fetch_array($resultado)) 
   {
-      $arrayAux= array('no' =>$i + 1,'bi'=>$f['bi'],'nomecompleto'=>$f['nomecompleto'],'nota2'=>$f['nota2'],'admitido'=>$f['admitido']);
+      $apto = "Apto";
+      if($f['nota2']< 10){
+        $apto = "Não Apto";
+      }
+      $arrayAux= array('no' =>$i + 1,'bi'=>$f['bi'],'nomecompleto'=>$f['nomecompleto'],'nota2'=>$f['nota2'],'admitido'=>$f['admitido'],'apto'=>$apto);
       $array[$i] = $arrayAux;
       $i++;            
   }

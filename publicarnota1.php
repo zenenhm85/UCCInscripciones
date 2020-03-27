@@ -75,11 +75,13 @@
                   <table class="table table-bordered table-hover" id="resultadosnota1">
                       <thead class="bg-gradient-primary">                        
                         <tr>
-                          <th scope="col" class="text-center text-gray-100" style="width: 10%;">Nº</th>
-                          <th scope="col" class="text-center text-gray-100" style="width: 50%;">Nome</th>
+                          <th scope="col" class="text-center text-gray-100" style="width: 5%;">Nº</th>
+                          <th scope="col" class="text-center text-gray-100" style="width: 40%;">Nome</th>
                           <th scope="col" class="text-center text-gray-100" style="width: 15%;">Bilhete de identidade</th> 
                           <th scope="col" class="text-center text-gray-100" style="width: 10%;">Nota</th> 
-                          <th scope="col" class="text-center text-gray-100" style="width: 15%;">Admitido</th>                
+                          <th scope="col" class="text-center text-gray-100" style="width: 15%;">Apto</th>
+                          <th scope="col" class="text-center text-gray-100" style="width: 15%;">Admitido</th> 
+
                         </tr>
                       </thead>
                       <tbody>                                                     
@@ -87,7 +89,8 @@
                           <td class="text-center">{{item.no}}</td> 
                           <td class="text-center">{{item.nomecompleto}}</td>
                           <td class="text-center">{{item.bi}}</td>
-                          <td class="text-center">{{item.nota1}}</td>                          
+                          <td class="text-center">{{item.nota1}}</td> 
+                          <td class="text-center">{{item.apto}}</td>                         
                           <td class="text-center" v-if="item.admitido == 1">
                             <button type="button" class="btn btn-primary btn-sm" >Sim</button>
                             <button type="button" class="btn btn-secondary btn-sm" @click="Admitir(item.bi,0)">Não</button>
@@ -119,32 +122,34 @@
                           <div class="col-12">
                             <table border="1"  id="exportarnotas" class="table  table-bordered" cellspacing="0" width="100%">
                                 <tr>
-                                  <td colspan="5" class="text-center text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RESULTADO DOS EXAMES DE ACESSO</td>
+                                  <td colspan="6" class="text-center text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RESULTADO DOS EXAMES DE ACESSO</td>
                                 </tr> 
                                 <tr>
-                                  <td colspan="5" class="text-center"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exame de Acesso {{ano}}</b></td>
+                                  <td colspan="6" class="text-center"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exame de Acesso {{ano}}</b></td>
                                 </tr>                                  
                                 <tr>                                  
-                                  <td colspan="5"><b>Curso</b>: {{curso}}</td>                       
+                                  <td colspan="6"><b>Curso</b>: {{curso}}</td>                       
                                 </tr>
                                 <tr>                                  
-                                  <td colspan="5"><b>Período</b>: {{periodo}}</td>                      
+                                  <td colspan="6"><b>Período</b>: {{periodo}}</td>                      
                                 </tr>
                                 <tr>                                  
-                                  <td colspan="5"><b>Ano</b>: {{ano}}</td>                      
+                                  <td colspan="6"><b>Ano</b>: {{ano}}</td>                      
                                 </tr>                            
                                 <tr>
-                                  <td scope="col" class="text-center" style="width: 10%;"><b>No</b></td>        
-                                  <td scope="col" class="text-center" style="width: 35%;"><b>Nome</b></td>
+                                  <td scope="col" class="text-center" style="width: 6%;"><b>No</b></td>        
+                                  <td scope="col" class="text-center" style="width: 43%;"><b>Nome</b></td>
                                   <td scope="col" class="text-center" style="width: 20%;"><b>BI</b></td>
-                                  <td scope="col" class="text-center" style="width: 15%;"><b>Resultado</b></td>
-                                  <td scope="col" class="text-center" style="width: 20%;"><b>OBS</b></td>
+                                  <td scope="col" class="text-center" style="width: 7%;"><b>Nota</b></td>
+                                  <td scope="col" class="text-center" style="width: 10%;"><b>Apto</b></td>
+                                  <td scope="col" class="text-center" style="width: 14%;"><b>OBS</b></td>
                                 </tr>               
                                 <tr v-for="item in listanotas">
                                   <td class="text-center">{{item.no}}</td>                            
                                   <td class="text-center">{{item.nomecompleto}}</td> 
                                   <td class="text-center">{{item.bi}}</td> 
                                   <td class="text-center">{{item.nota1}}</td>  
+                                  <td class="text-center">{{item.apto}}</td> 
                                   <td class="text-center" v-if="item.admitido == 1">Admitido</td>
                                   <td class="text-center" v-else>Não Admitido</td>                                  
                                 </tr>                                       
