@@ -40,29 +40,28 @@
           <div class="card shadow mb-4">            
             <div class="row">
               <div class="col">
-                  <table class="table table-bordered table-hover">
-                      <thead class="bg-gradient-primary">
-                          <tr>
-                              <th scope="col" class="text-center text-gray-100" style="width: 20%;">Bilhete de identidade</th>
-                              <th scope="col" class="text-center text-gray-100" style="width: 35%;">Nome completo</th> 
-                              <th scope="col" class="text-center text-gray-100" style="width: 15%;">Sexo</th>                     
-                              <th scope="col" class="text-center text-gray-100" style="width: 10%;">Aleterar</th>
-                              <th scope="col" class="text-center text-gray-100" style="width: 10%;">Excluir</th>
-                              <th scope="col" class="text-center text-gray-100" style="width: 10%;">Informação</th>                
-                          </tr>
-                      </thead>
-                      <tbody>                                
-                          <tr v-for="item in alunos">
-                              <td class="text-center">{{item.bi}}</td>
-                              <td class="text-center">{{item.nomecompleto}}</td>
-                              <td class="text-center">{{item.sexo}}</td>
-                              <td class="text-center"><button class="btn btn-outline-secondary btn-circle" title="Alterar" data-toggle="modal" data-target="#alterarAlunoModal" @click="btnAlterar(item.bi,item.datanasc,item.nomecompleto,item.comuna,item.municipio,item.provincia,item.endereco,item.sexo,item.telefone,item.email,item.obs,item.procedencia,item.cursomedio,item.trabalhador)"><i class="fa fa-pencil-alt fa-1x"></i></button></td>
-                              <td class="text-center"><button class="btn btn-danger btn-circle" title="Excluir" data-toggle="modal" data-target="#excluiAlunoModal" @click="btnEliminar(item.bi)"><i class="fa fa-trash-alt fa-1x"></i></button></td> 
-                              <td class="text-center"><button class="btn btn-info btn-circle" title="Informação completa" data-toggle="modal" data-target="#infoAlunoModal" @click="info(item.bi,item.datanasc,item.nomecompleto,item.comuna,item.municipio,item.provincia,item.endereco,item.sexo,item.telefone,item.email,item.obs,item.procedencia,item.cursomedio,item.trabalhador,item.userid)"><i class="fa fa-info-circle fa-1x"></i></button></td>                                                
-                          </tr>                          
-                      </tbody>
-                  </table>
-
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-gradient-primary">
+                        <tr>
+                            <th scope="col" class="text-center text-gray-100" style="width: 20%;">Bilhete de identidade</th>
+                            <th scope="col" class="text-center text-gray-100" style="width: 35%;">Nome completo</th> 
+                            <th scope="col" class="text-center text-gray-100" style="width: 15%;">Sexo</th>                     
+                            <th scope="col" class="text-center text-gray-100" style="width: 10%;">Aleterar</th>
+                            <th scope="col" class="text-center text-gray-100" style="width: 10%;">Excluir</th>
+                            <th scope="col" class="text-center text-gray-100" style="width: 10%;">Informação</th>                
+                        </tr>
+                    </thead>
+                    <tbody>                                
+                      <tr v-for="item in alunos">
+                        <td class="text-center">{{item.bi}}</td>
+                        <td class="text-center">{{item.nomecompleto}}</td>
+                        <td class="text-center">{{item.sexo}}</td>
+                        <td class="text-center"><button class="btn btn-outline-secondary btn-circle" title="Alterar" data-toggle="modal" data-target="#alterarAlunoModal" @click="btnAlterar(item.bi,item.datanasc,item.nomecompleto,item.comuna,item.municipio,item.provincia,item.endereco,item.sexo,item.telefone,item.email,item.obs,item.procedencia,item.cursomedio,item.trabalhador,item.cc)"><i class="fa fa-pencil-alt fa-1x"></i></button></td>
+                        <td class="text-center"><button class="btn btn-danger btn-circle" title="Excluir" data-toggle="modal" data-target="#excluiAlunoModal" @click="btnEliminar(item.bi)"><i class="fa fa-trash-alt fa-1x"></i></button></td> 
+                        <td class="text-center"><button class="btn btn-info btn-circle" title="Informação completa" data-toggle="modal" data-target="#infoAlunoModal" @click="info(item.bi,item.datanasc,item.nomecompleto,item.comuna,item.municipio,item.provincia,item.endereco,item.sexo,item.telefone,item.email,item.obs,item.procedencia,item.cursomedio,item.trabalhador,item.userid,item.cc)"><i class="fa fa-info-circle fa-1x"></i></button></td>
+                      </tr>                          
+                    </tbody>
+                </table>
               </div>
             </div>            
             
@@ -112,20 +111,23 @@
                                   </div>
                               </div>
                               <div class="form-group row">
-                                  <label class="col-sm-4 col-form-label">Procedência:</label>
-                                  <div class="col-sm-8"> 
-                                    <select id="procedenciaaluno" class="form-control" v-model="procedencia">
-                                      <option v-for="item7 in procedencias">{{item7.nome}}</option>                
-                                    </select>
-                                  </div>
+                                <label class="col-sm-4 col-form-label">Procedência(CC?):</label>
+                                <div class="col-sm-7"> 
+                                  <select id="procedenciaaluno" class="form-control" v-model="procedencia">
+                                    <option v-for="item7 in procedencias">{{item7.nome}}</option>                
+                                  </select>
+                                </div>
+                                <div class="col-sm-1">
+                                  <input type="checkbox" class="form-control" id="cc" checked> 
+                                </div>
                               </div>
                               <div class="form-group row">
-                                  <label class="col-sm-4 col-form-label">Curso Médio:</label>
-                                  <div class="col-sm-8"> 
-                                    <select id="cursomedioaluno" class="form-control" v-model="cursomedio">
-                                      <option v-for="item8 in cursosmedio">{{item8.nome}}</option>                
-                                    </select>
-                                  </div>
+                                <label class="col-sm-4 col-form-label">Curso Médio:</label>
+                                <div class="col-sm-8"> 
+                                  <select id="cursomedioaluno" class="form-control" v-model="cursomedio">
+                                    <option v-for="item8 in cursosmedio">{{item8.nome}}</option>                
+                                  </select>
+                                </div>
                               </div>
                               <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-4 col-form-label">Endereço:</label>
@@ -242,20 +244,23 @@
                                   </div>
                               </div>
                               <div class="form-group row">
-                                  <label class="col-sm-4 col-form-label">Procedência:</label>
-                                  <div class="col-sm-8"> 
-                                    <select id="procedenciaalunom" class="form-control" v-model="procedenciam">
-                                      <option v-for="item7 in procedencias">{{item7.nome}}</option>                
-                                    </select>
-                                  </div>
+                                <label class="col-sm-4 col-form-label">Procedência(CC?):</label>
+                                <div class="col-sm-7"> 
+                                  <select id="procedenciaalunom" class="form-control" v-model="procedenciam">
+                                    <option v-for="item7 in procedencias">{{item7.nome}}</option>                
+                                  </select>
+                                </div>
+                                <div class="col-sm-1">
+                                  <input type="checkbox" class="form-control" id="ccm" v-model="ccm"> 
+                                </div>
                               </div>
                               <div class="form-group row">
-                                  <label class="col-sm-4 col-form-label">Curso Médio:</label>
-                                  <div class="col-sm-8"> 
-                                    <select id="cursomedioalunom" class="form-control" v-model="cursomediom">
-                                      <option v-for="item8 in cursosmedio">{{item8.nome}}</option>                
-                                    </select>
-                                  </div>
+                                <label class="col-sm-4 col-form-label">Curso Médio:</label>
+                                <div class="col-sm-8"> 
+                                  <select id="cursomedioalunom" class="form-control" v-model="cursomediom">
+                                    <option v-for="item8 in cursosmedio">{{item8.nome}}</option>                
+                                  </select>
+                                </div>
                               </div>
                               <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-4 col-form-label">Endereço:</label>
@@ -369,6 +374,7 @@
                             <p><b>Telefone: </b>{{telefonei}}</p>
                             <p><b>Email: </b>{{emaili}}</p>
                             <p><b>Procedência Escolar: </b>{{procedenciai}}</p>
+                            <p><b>Ensino médio em CC?: </b>{{cci}}</p>
                             <p><b>Curso do Ensino Médio: </b>{{cursomedioi}}</p>
                           </div>
                           <div class="col-5">

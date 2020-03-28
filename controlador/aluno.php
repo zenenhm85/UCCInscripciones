@@ -22,12 +22,13 @@
         $procedencia = (isset($_POST['procedencia'])) ? $_POST['procedencia'] : '';
         $cursomedio = (isset($_POST['cursomedio'])) ? $_POST['cursomedio'] : ''; 
         $trabalhador = (isset($_POST['trabalhador'])) ? $_POST['trabalhador'] : ''; 
+        $cc = (isset($_POST['cc'])) ? $_POST['cc'] : ''; 
 
         $usurioaux = $_SESSION['Usuario']; 
         $userid = $usurioaux['idusuario'];      
 
         $aluno = new Aluno();
-        $resultado = $aluno::Cadastrar($bi,$datanasc,$nomecompleto,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid);   
+        $resultado = $aluno::Cadastrar($bi,$datanasc,$nomecompleto,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid,$cc);   
         $array = array();
         $array[0] = $resultado;
         print json_encode($array, JSON_UNESCAPED_UNICODE);
@@ -50,12 +51,13 @@
         $procedencia = (isset($_POST['procedencia'])) ? $_POST['procedencia'] : '';
         $cursomedio = (isset($_POST['cursomedio'])) ? $_POST['cursomedio'] : ''; 
         $trabalhador = (isset($_POST['trabalhador'])) ? $_POST['trabalhador'] : ''; 
+        $ccm = (isset($_POST['ccm'])) ? $_POST['ccm'] : ''; 
 
         $usurioaux = $_SESSION['Usuario']; 
         $userid = $usurioaux['idusuario'];      
 
         $aluno = new Aluno();
-        $resultado = $aluno::Alterar($bia,$bi,$datanasc,$nome,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid);   
+        $resultado = $aluno::Alterar($bia,$bi,$datanasc,$nome,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid,$ccm);   
         $array = array();
         $array[0] = $resultado;
         print json_encode($array, JSON_UNESCAPED_UNICODE); 

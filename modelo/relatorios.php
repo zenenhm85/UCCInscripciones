@@ -822,6 +822,45 @@
                 return "O error de Conexão é: ". $e->getMessage();
             }                                      
         }                                                    
-        
+        public static function EmMasDeUnCursoPeriodo($ano) {
+            $objeto = new Conexao();
+            $conexao = $objeto->Conectar();  
+
+            $total = 0;
+            $masdeuncurso = 0;
+            $masdeunperiodo = 0;         
+
+            $query = "SELECT bi FROM inscricao WHERE ano = '$ano'";                         
+            try{
+                $listaestudantes = mysqli_query($conexao, $query);
+
+                while ($f = mysqli_fetch_array($listaestudantes)) {
+                    $total++;
+                    $biestudante = $f['bi'];
+                    $query2 = "SELECT * FROM inscricaocurso WHERE bi='$biestudante' AND ano='$ano'";
+                    $listainscricao = mysqli_query($conexao, $query2);
+
+                    $aux = mysqli_fetch_array($listainscricao);
+                    $curso = $aux['curso'];
+                    $perido = $aux['perido'];
+
+                    while ($f2 = mysqli_fetch_array($listainscricao)){
+                        if($f2['curso']!= $curso){
+                            $masdeuncurso++;
+                        }
+                        if($f2['perido']!=$perido){
+                           $masdeunperiodo++; 
+                        }
+                    }
+                }
+                $arrayAux= array('total' =>$total,'masdeuncurso'=>$masdeuncurso,'masdeunperiodo' =>$masdeunperiodo);
+
+                mysqli_close($conexao);
+                return $arrayAux;
+            }
+            catch (Exception $e){
+                return "O error de Conexão é: ". $e->getMessage();
+            }                                      
+        }                   
     }
 ?>

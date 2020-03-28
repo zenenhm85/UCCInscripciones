@@ -1367,7 +1367,7 @@ var aluno = new Vue({
     telefonei:'',
     emaili:'',
     obsi:'',
-    procedencia:'',
+    procedencia:'PUNIV',
     cursomedio:'',
     trabalhador:'', 
     procedenciai:'',
@@ -1377,7 +1377,9 @@ var aluno = new Vue({
     cursomediom:'',
     trabalhadorm:'',
     procuraralunobi:'',
-    useri:''     
+    useri:'',
+    cci:'Sim',
+    ccm:1   
   },
   methods:{
     InserirAluno:async function(){
@@ -1395,6 +1397,11 @@ var aluno = new Vue({
         var procedencia = document.getElementById('procedenciaaluno').value;
         var cursomedio = document.getElementById('cursomedioaluno').value;
         var trabalhador = document.getElementById('trablhador').value;
+        var cc = '1';
+        if (!document.getElementById('cc').value) {
+          cc = '0';
+        }
+        
 
         var expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
         var expresiontele = /^[0-9]{9}$/i;
@@ -1426,7 +1433,7 @@ var aluno = new Vue({
           }         
         else{          
               var url = "./controlador/aluno.php"; 
-              axios.post(url, {opcao:1,bi:bi,datanasc:datanasc,nomecompleto:nomecompleto,comuna:comuna,municipio:municipio,provincia:provincia,endereco:endereco,sexo:sexo,telefone:telefone,email:email,obs:obs,procedencia:procedencia,cursomedio:cursomedio,trabalhador:trabalhador}).then(response =>{
+              axios.post(url, {opcao:1,bi:bi,datanasc:datanasc,nomecompleto:nomecompleto,comuna:comuna,municipio:municipio,provincia:provincia,endereco:endereco,sexo:sexo,telefone:telefone,email:email,obs:obs,procedencia:procedencia,cursomedio:cursomedio,trabalhador:trabalhador,cc:cc}).then(response =>{
                   var aux = response.data;
                   if(aux == "1"){
                     this.listarultimos25();                    
@@ -1490,7 +1497,7 @@ var aluno = new Vue({
         });      
 
     },  
-    btnAlterar:function(bi,datanasc,nomecompleto,comuna,municipio,provincia,endereco,sexo,telefone,email,obs,procedencia,cursomedio,trabalhador){
+    btnAlterar:function(bi,datanasc,nomecompleto,comuna,municipio,provincia,endereco,sexo,telefone,email,obs,procedencia,cursomedio,trabalhador,cc){
       this.bi = bi;      
       this.listarProvinciasM();
       this.nomeprovinciam = provincia;
@@ -1508,7 +1515,16 @@ var aluno = new Vue({
       document.getElementById('telefonealunom').value = telefone;
       document.getElementById('emailalunom').value = email;
       document.getElementById('sexoalunom').value = sexo;
-      document.getElementById('obsalunom').value = obs;     
+      document.getElementById('obsalunom').value = obs; 
+
+      if(cc == 1){         
+        
+        this.ccm = 1;        
+      }
+      else{
+        
+        this.ccm = 0;
+      }     
     },  
     Alterar:async function(){
       var nome = document.getElementById('nomealunom').value;
@@ -1550,7 +1566,7 @@ var aluno = new Vue({
         }                  
       else{          
           var url = "./controlador/aluno.php";
-          axios.post(url, {opcao:2,bia:this.bi,bi:bi,datanasc:datanasc,nome:nome,comuna:comuna,municipio:municipio,provincia:provincia,endereco:endereco,sexo:sexo,telefone:telefone,email:email,obs:obs,procedencia:procedencia,cursomedio:cursomedio,trabalhador:trabalhador}).then(response =>{
+          axios.post(url, {opcao:2,bia:this.bi,bi:bi,datanasc:datanasc,nome:nome,comuna:comuna,municipio:municipio,provincia:provincia,endereco:endereco,sexo:sexo,telefone:telefone,email:email,obs:obs,procedencia:procedencia,cursomedio:cursomedio,trabalhador:trabalhador,ccm:this.ccm}).then(response =>{
               var aux = response.data;
               if(aux == "1"){
                 this.listarultimos25();
@@ -1577,7 +1593,7 @@ var aluno = new Vue({
           });                   
       }
     }, 
-    info:function(bi,datanasc,nomecompleto,comuna,municipio,provincia,endereco,sexo,telefone,email,obs,procedencia,cursomedio,trabalhador,userid){
+    info:function(bi,datanasc,nomecompleto,comuna,municipio,provincia,endereco,sexo,telefone,email,obs,procedencia,cursomedio,trabalhador,userid,cc){
       this.bii = bi;
       this.datanasci = datanasc;
       this.nomecompletoi = nomecompleto;
@@ -1593,6 +1609,12 @@ var aluno = new Vue({
       this.cursomedioi = cursomedio;
       this.trabalhadori = trabalhador;
       this.useri = userid;
+      if(cc == '1'){
+        this.cci = "Sim";
+      }
+      else{
+        this.cci = "Não";
+      }
     },
     listarultimos25:async function(){
         var url = "./controlador/aluno.php";
@@ -1679,7 +1701,7 @@ var aluno = new Vue({
         var url = "./controlador/procedencia.php";
         axios.post(url, {opcao:4}).then(response =>{
             this.procedencias = response.data; 
-            this.procedencia = this.procedencias[1].nome;   
+            this.procedencia = 'PUNIV';   
         });
     },
     listarCursosMedio:async function(){

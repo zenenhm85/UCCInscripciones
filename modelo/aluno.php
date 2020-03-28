@@ -97,11 +97,11 @@
                 return "O error de Conexão é: ". $e->getMessage();
             }                      
         }        
-        public static function Cadastrar($bi,$datanasc,$nomecompleto,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid) {
+        public static function Cadastrar($bi,$datanasc,$nomecompleto,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid,$cc) {
             $objeto = new Conexao();
             $conexao = $objeto->Conectar();           
 
-            $query = "INSERT INTO aluno(bi,datanasc,nomecompleto,comuna,municipio,provincia,endereco,sexo,telefone,email,obs,procedencia,cursomedio,trabalhador,userid) VALUES('$bi','$datanasc','$nomecompleto','$comuna','$municipio','$provincia','$endereco','$sexo','$telefone','$email','$obs','$procedencia','$cursomedio','$trabalhador','$userid')";                           
+            $query = "INSERT INTO aluno(bi,datanasc,nomecompleto,comuna,municipio,provincia,endereco,sexo,telefone,email,obs,procedencia,cursomedio,trabalhador,userid,cc) VALUES('$bi','$datanasc','$nomecompleto','$comuna','$municipio','$provincia','$endereco','$sexo','$telefone','$email','$obs','$procedencia','$cursomedio','$trabalhador','$userid','$cc')";                           
             if(mysqli_query($conexao, $query))
             {
                 mysqli_close($conexao);
@@ -113,10 +113,10 @@
                 return 'Engano: ' . $error;
             }                   
         }
-        public static function Alterar($bia,$bi,$datanasc,$nomecompleto,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid) {
+        public static function Alterar($bia,$bi,$datanasc,$nomecompleto,$comuna,$municipio,$provincia,$endereco,$sexo,$telefone,$email,$obs,$procedencia,$cursomedio,$trabalhador,$userid,$cc) {
             $objeto = new Conexao();
             $conexao = $objeto->Conectar();  
-            $query = "UPDATE aluno SET bi='$bi',datanasc='$datanasc',nomecompleto='$nomecompleto',comuna='$comuna',municipio='$municipio',provincia='$provincia',endereco='$endereco',sexo='$sexo',telefone='$telefone',email='$email', obs='$obs',procedencia='$procedencia',cursomedio='$cursomedio',trabalhador='$trabalhador',userid='$userid'  WHERE bi='$bia'";                           
+            $query = "UPDATE aluno SET bi='$bi',datanasc='$datanasc',nomecompleto='$nomecompleto',comuna='$comuna',municipio='$municipio',provincia='$provincia',endereco='$endereco',sexo='$sexo',telefone='$telefone',email='$email', obs='$obs',procedencia='$procedencia',cursomedio='$cursomedio',trabalhador='$trabalhador',userid='$userid',cc='$cc'  WHERE bi='$bia'";                           
             if(mysqli_query($conexao, $query))
             {                
                 mysqli_close($conexao);     
@@ -142,6 +142,6 @@
                 mysqli_close($conexao);
                 return 'Engano: ' . $error;
             }                   
-        }
+        }        
     }
 ?>
