@@ -837,23 +837,40 @@
                 while ($f = mysqli_fetch_array($listaestudantes)) {
                     $total++;
                     $biestudante = $f['bi'];
-                    $query2 = "SELECT * FROM inscricaocurso WHERE bi='$biestudante' AND ano='$ano'";
-                    $listainscricao = mysqli_query($conexao, $query2);
+                    $query2 = "SELECT * FROM inscricaocurso WHERE bi='$biestudante' AND ano ='$ano'";
 
+                    $listainscricao = mysqli_query($conexao, $query2);
                     $aux = mysqli_fetch_array($listainscricao);
                     $curso = $aux['curso'];
                     $perido = $aux['perido'];
+                    $auxcurso = 0;
+                    $auxperiodo = 0;
 
                     while ($f2 = mysqli_fetch_array($listainscricao)){
                         if($f2['curso']!= $curso){
-                            $masdeuncurso++;
+                            $auxcurso++;
                         }
                         if($f2['perido']!=$perido){
-                           $masdeunperiodo++; 
+                           $auxperiodo++;
+                        }
+                        if($auxcurso != 0){
+                            $masdeuncurso++; 
+                        }
+                        if($auxperiodo != 0) {
+                            $masdeunperiodo++; 
                         }
                     }
                 }
-                $arrayAux= array('total' =>$total,'masdeuncurso'=>$masdeuncurso,'masdeunperiodo' =>$masdeunperiodo);
+                if ($total > 0) {
+                    $arrayAux= array('total' =>$total,'masdeuncurso'=>$masdeuncurso,'masdeunperiodo' =>$masdeunperiodo,'pormasdeuncurso'=>round(($masdeuncurso*100)/$total,2),'pormasdeunperiodo' =>round(($masdeunperiodo*100)/$total,2));
+                }
+                else{
+                    $arrayAux= array('total' =>0,'masdeuncurso'=>0,'masdeunperiodo' =>0,'pormasdeuncurso'=>0,'pormasdeunperiodo' =>0);
+
+                }
+               
+                
+
 
                 mysqli_close($conexao);
                 return $arrayAux;
@@ -861,6 +878,70 @@
             catch (Exception $e){
                 return "O error de Conexão é: ". $e->getMessage();
             }                                      
-        }                   
+        }
+        public static function Tabla3OP($ano) {
+            $objeto = new Conexao();
+            $conexao = $objeto->Conectar();    
+
+            $resultado = array();        
+
+            $query = "SELECT COUNT(aluno.bi) as quant,aluno.procedencia FROM aluno INNER JOIN inscricao ON(aluno.bi = inscricao.bi) WHERE aluno.cc = '0' AND inscricao.ano='$ano' GROUP BY aluno.procedencia";                         
+            try{
+                $listaestudantes = mysqli_query($conexao, $query);
+                $i = 0;
+
+                while ($f = mysqli_fetch_array($listaestudantes)) { 
+
+                    $procedencia = $f['procedencia'];
+                    $query2 = "SELECT COUNT(DISTINCT(aluno.bi)) as quant FROM aluno INNER JOIN inscricaocurso ON(aluno.bi = inscricaocurso.bi) WHERE aluno.cc = '0' AND aluno.procedencia='$procedencia' AND inscricaocurso.admitido = '1' AND inscricaocurso.ano='$ano'";
+
+                    $listaadmitidos = mysqli_query($conexao, $query2);
+                    $aux = mysqli_fetch_array($listaadmitidos);
+
+                    $arrayAux= array('procedencia' =>$f['procedencia'],'admitidos'=>$aux['quant'],'naoadmitidos'=>$f['quant']-$aux['quant'],'total' =>$f['quant'],'taxaadmisao'=>round(($aux['quant']*100)/$f['quant'],2));
+
+                    $resultado[$i] = $arrayAux;
+                    $i++;
+                    
+                }
+                mysqli_close($conexao);
+                return $resultado;
+            }
+            catch (Exception $e){
+                return "O error de Conexão é: ". $e->getMessage();
+            }                                      
+        } 
+        public static function Tabla3CC($ano) {
+            $objeto = new Conexao();
+            $conexao = $objeto->Conectar();    
+
+            $resultado = array();        
+
+            $query = "SELECT COUNT(aluno.bi) as quant,aluno.procedencia FROM aluno INNER JOIN inscricao ON(aluno.bi = inscricao.bi) WHERE aluno.cc = '1' AND inscricao.ano='$ano' GROUP BY aluno.procedencia";                         
+            try{
+                $listaestudantes = mysqli_query($conexao, $query);
+                $i = 0;
+
+                while ($f = mysqli_fetch_array($listaestudantes)) { 
+
+                    $procedencia = $f['procedencia'];
+                    $query2 = "SELECT COUNT(DISTINCT(aluno.bi)) as quant FROM aluno INNER JOIN inscricaocurso ON(aluno.bi = inscricaocurso.bi) WHERE aluno.cc = '1' AND aluno.procedencia='$procedencia' AND inscricaocurso.admitido = '1' AND inscricaocurso.ano='$ano'";
+
+                    $listaadmitidos = mysqli_query($conexao, $query2);
+                    $aux = mysqli_fetch_array($listaadmitidos);
+
+                    $arrayAux= array('procedencia' =>$f['procedencia'],'admitidos'=>$aux['quant'],'naoadmitidos'=>$f['quant']-$aux['quant'],'total' =>$f['quant'],'taxaadmisao'=>round(($aux['quant']*100)/$f['quant'],2));
+
+                    $resultado[$i] = $arrayAux;
+                    $i++;
+                    
+                }
+                mysqli_close($conexao);
+                return $resultado;
+            }
+            catch (Exception $e){
+                return "O error de Conexão é: ". $e->getMessage();
+            }                                      
+        }                                                                  
     }
 ?>

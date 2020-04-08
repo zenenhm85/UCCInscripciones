@@ -41,7 +41,162 @@
             </div>
           </div>          
           <p></p>   
-          <!-- DataTales Inscrições -->     
+          <!-- DataTales Inscrições -->   
+          <div class="row">
+              <!-- Content Column -->              
+            <div class="col-lg-12 mb-4">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary text-center">Inscrições em mais de um curso e período</h6>
+                </div>
+                <div class="card-body">
+                  <div >
+                    <h4 class="small font-weight-bold">Mais de um curso<span class="float-right">{{masdeuncurso}}</span></h4>
+                    <div class="progress mb-4">
+                      <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" v-bind:style="{ width: pormasdeuncurso + '%'}"  :aria-valuenow="pormasdeuncurso" aria-valuemin="0" aria-valuemax="100">{{pormasdeuncurso}}%</div>
+                    </div>
+                  </div> 
+                  <div >
+                    <h4 class="small font-weight-bold">Mais de um período<span class="float-right">{{masdeunperiodo}}</span></h4>
+                    <div class="progress mb-4">
+                      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" v-bind:style="{ width: pormasdeunperiodo + '%'}"  :aria-valuenow="pormasdeunperiodo" aria-valuemin="0" aria-valuemax="100">{{pormasdeunperiodo}}%</div>
+                    </div>
+                  </div>                
+                </div>
+              </div>         
+            </div> 
+          </div> 
+          <div class="row">
+              <!-- Content Column -->              
+            <div class="col-lg-12 mb-4">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary text-center">Escolas de origem e grau de inserção dos candidatos</h6>
+                </div>
+                <div class="card-body"> 
+                  <table class="table table-bordered table-hover table-responsive-lg">
+                    <thead class="bg-gradient-primary">
+                      <tr>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 30%;">Escola de formação</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">Admitido</th> 
+                        <th scope="col" class="text-gray-100 text-center" style="width: 15%;">Não Admitido</th>                     
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">Total Geral</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">% Admissão</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">% Inscrições</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 15%;">% Admissões</th>                
+                      </tr>
+                    </thead>
+                    <tbody>                                
+                      <tr>
+                        <td class="text-center" colspan="7"><b class="text-uppercase">Outras Províncias</b></td>
+                      </tr> 
+                      <tr v-for="item26 in tabela3OP" >
+                        <td class="text-center">
+                          {{item26.procedencia}}
+                        </td>
+                        <td class="text-center">
+                          {{item26.admitidos}}
+                        </td>
+                        <td class="text-center">
+                          {{item26.naoadmitidos}}
+                        </td>
+                        <td class="text-center">
+                          {{item26.total}}
+                        </td>
+                        <td class="text-center">
+                          {{item26.taxaadmisao}}
+                        </td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>                        
+                      </tr>
+                      <tr class="text-center">
+                        <td><b>Sub Total</b></td>
+                        <td><b>{{adop}}</b></td>
+                        <td><b>{{naoadop}}</b></td>
+                        <td><b>{{totalop}}</b></td>
+                        <td><b>{{taxaop}}</b></td>
+                        <td><b>{{porinscop}}</b></td>
+                        <td><b>{{poradop}}</b></td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  <table class="table table-bordered table-hover table-responsive-lg">
+                    <thead class="bg-gradient-primary">
+                      <tr>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 30%;">Escola de formação</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">Admitido</th> 
+                        <th scope="col" class="text-gray-100 text-center" style="width: 15%;">Não Admitido</th>                     
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">Total Geral</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">% Admissão</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">% Inscrições</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 15%;">% Admissões</th>                
+                      </tr>
+                    </thead>
+                    <tbody>                                
+                      <tr>
+                        <td class="text-center" colspan="7"><b class="text-uppercase">Cuando Cubango</b></td>
+                      </tr>
+                      <tr v-for="item27 in tabela3CC" >
+                        <td class="text-center">
+                          {{item27.procedencia}}
+                        </td>
+                        <td class="text-center">
+                          {{item27.admitidos}}
+                        </td>
+                        <td class="text-center">
+                          {{item27.naoadmitidos}}
+                        </td>
+                        <td class="text-center">
+                          {{item27.total}}
+                        </td>
+                        <td class="text-center">
+                          {{item27.taxaadmisao}}
+                        </td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>                        
+                      </tr>
+                      <tr class="text-center">
+                        <td><b>Sub Total</b></td>
+                        <td><b>{{adcc}}</b></td>
+                        <td><b>{{naoadcc}}</b></td>
+                        <td><b>{{totalcc}}</b></td>
+                        <td><b>{{taxacc}}</b></td>
+                        <td><b>{{porinsccc}}</b></td>
+                        <td><b>{{poradcc}}</b></td>
+                      </tr>                   
+                    </tbody>
+                  </table>
+                  <table class="table table-bordered table-hover table-responsive-lg">
+                    <thead class="bg-gradient-primary">
+                      <tr>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 30%;">Escola de formação</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">Admitido</th> 
+                        <th scope="col" class="text-gray-100 text-center" style="width: 15%;">Não Admitido</th>                     
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">Total Geral</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">% Admissão</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 10%;">% Inscrições</th>
+                        <th scope="col" class="text-gray-100 text-center" style="width: 15%;">% Admissões</th>                
+                      </tr>
+                    </thead>
+                    <tbody>               
+                      <tr class="text-center">
+                        <td><b>Total Geral</b></td>
+                        <td><b>{{adop + adcc}}</b></td>
+                        <td><b>{{naoadop + naoadcc}}</b></td>
+                        <td><b>{{totalop + totalcc}}</b></td>
+                        <td><b>{{taxageral}}</b></td>
+                        <td></td>
+                        <td></td>
+                      </tr>               
+                    </tbody>
+                  </table>
+                </div>
+              </div>         
+            </div> 
+          </div> 
           <div class="row">
               <!-- Content Column -->              
               <div class="col-lg-12 mb-4">

@@ -309,6 +309,38 @@ else if($opcao == 22){
 	$resultado = $relatorio1::ResultadosProcedenciaProvinciaII($ano); 
 	print json_encode($resultado, JSON_UNESCAPED_UNICODE);
 }
+else if($opcao == 25){
+
+	$relatorio1 = new Relatorios();
+	$resultado = $relatorio1::EmMasDeUnCursoPeriodo($ano); 
+	print json_encode($resultado, JSON_UNESCAPED_UNICODE);
+}
+else if($opcao == 26){
+
+	$relatorio1 = new Relatorios();
+	$resultado = $relatorio1::Tabla3OP($ano); 
+
+	$array = array();
+	$i = 0;
+	foreach ($resultado as $f) {
+		$array[$i] =$f;
+		$i++;
+	}	
+	print json_encode($array, JSON_UNESCAPED_UNICODE);
+}
+else if($opcao == 27){
+
+	$relatorio1 = new Relatorios();
+	$resultado = $relatorio1::Tabla3CC($ano); 
+
+	$array = array();
+	$i = 0;
+	foreach ($resultado as $f) {
+		$array[$i] =$f;
+		$i++;
+	}	
+	print json_encode($array, JSON_UNESCAPED_UNICODE);
+}
 else{	
 	$relatorio1 = new Relatorios();
 	$resultado = $relatorio1::QuantPagamentosPorUser($ano); 

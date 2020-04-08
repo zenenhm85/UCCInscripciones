@@ -691,7 +691,7 @@ var relatorio2= new Vue({
 
 });
 /*******Relatorio3******/
-var relatorio2= new Vue({
+var relatorio3= new Vue({
   el:"#relatorio3",
   data:{
     listaQuantCursos:[],
@@ -701,9 +701,79 @@ var relatorio2= new Vue({
     listaQuantProcedencia:[],
     listaQuantProcedenciaII:[],
     cursoaprovadosII:[],
-    ano:'2020'         
+    tabela3OP:[],
+    tabela3CC:[],
+    ano:'2020',
+    masdeuncurso:'0',
+    pormasdeuncurso:'0',
+    masdeunperiodo:'0',
+    pormasdeunperiodo:'0',
+    adop:0,
+    naoadop:0,
+    totalop:0,
+    taxaop:'0',
+    adcc:0,
+    naoadcc:0,
+    totalcc:0,
+    taxacc:'0',
+    taxageral:'0',
+    porinscop:'0',
+    poradop:'0',
+    porinsccc:'0',
+    poradcc:'0'
   },
   methods:{
+    EmMasDeUnCursoPeriodo:async function(){
+      var url = "./controlador/relatorios2.php";
+      axios.post(url, {opcao:25,ano:this.ano}).then(response =>{
+         this.masdeuncurso = response.data.masdeuncurso; 
+         this.pormasdeuncurso = response.data.pormasdeuncurso; 
+         this.masdeunperiodo = response.data.masdeunperiodo;  
+         this.pormasdeunperiodo = response.data.pormasdeunperiodo;                
+      });
+    },
+    Tabla3OP:async function(){
+      var url = "./controlador/relatorios2.php";
+      axios.post(url, {opcao:26,ano:this.ano}).then(response =>{
+         this.tabela3OP = response.data; 
+         for (var i = 0; i < this.tabela3OP.length; i++) {
+             this.adop+=parseInt(this.tabela3OP[i].admitidos);
+             this.naoadop+=parseInt(this.tabela3OP[i].naoadmitidos) ;
+             this.totalop+=parseInt(this.tabela3OP[i].total);
+          } 
+          var aux1 = (this.adop*100)/this.totalop;  
+          this.taxaop = aux1.toFixed(2);                    
+      });
+    },
+    Tabla3CC:async function(){
+      var url = "./controlador/relatorios2.php";
+      axios.post(url, {opcao:27,ano:this.ano}).then(response =>{
+         this.tabela3CC = response.data; 
+         for (var i = 0; i < this.tabela3CC.length; i++) {
+             this.adcc+=parseInt(this.tabela3CC[i].admitidos);
+             this.naoadcc+=parseInt(this.tabela3CC[i].naoadmitidos) ;
+             this.totalcc+=parseInt(this.tabela3CC[i].total);
+          } 
+
+          var aux2 = (this.adcc*100)/this.totalcc;   
+          this.taxacc = aux2.toFixed(2);   
+
+          var aux3 = ((this.adcc + this.adop)*100) / (this.totalop+this.totalcc);
+          this.taxageral = aux3.toFixed(2);
+
+          var aux4 = (this.totalop*100)/ (this.totalop+this.totalcc);
+          this.porinscop = aux4.toFixed(2);
+          var aux5 = (this.totalcc*100)/ (this.totalop+this.totalcc);
+          this.porinsccc = aux5.toFixed(2);
+
+          var aux6 = (this.adop*100)/ (this.adop+this.adcc);
+          this.poradop = aux6.toFixed(2);
+          var aux7 = (this.adcc*100)/ (this.adop+this.adcc);
+          this.poradcc = aux7.toFixed(2);
+
+
+      });
+    },
     inscricaoporCursos:async function(){
       var url = "./controlador/relatorios2.php";
       axios.post(url, {opcao:1,ano:this.ano}).then(response =>{
@@ -754,6 +824,9 @@ var relatorio2= new Vue({
       this.cursosAprovadosII();
       this.ResultadosporCursoAVG(); 
       this.ResultadosporCursoAVGII(); 
+      this.EmMasDeUnCursoPeriodo();
+      this.Tabla3OP();
+      this.Tabla3CC();
     }
   },
   created: function(){
