@@ -817,6 +817,19 @@ var relatorio3= new Vue({
       });
     },
     reiniciar:async function(){
+      this.adop=0;
+      this.naoadop = 0;
+      this.totalop=0;
+      this.taxaop='0';
+      this.adcc=0;
+      this.naoadcc=0;
+      this.totalcc=0;
+      this.taxacc='0';
+      this.taxageral='0';
+      this.porinscop='0';
+      this.poradop='0';
+      this.porinsccc='0';
+      this.poradcc='0';
       this.inscricaoporCursos(); 
       this.inscricaoporCursosII(); 
       this.cursosSexo();
